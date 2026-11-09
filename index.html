@@ -1,4 +1,9 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808">
 <title>ARVI Digitals</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="ARVI Digitals — wedding, portrait, product and commercial photography and films.">
@@ -711,7 +716,7 @@ h1,h2,h3{overflow-wrap:break-word}
         <div><h2 id="films-h">Cinematic Video &amp; Reels</h2></div>
       </div>
       <figure class="feature" id="feature">
-        <video id="feat-v" src="films/krishna.mp4" poster="films/krishna.jpg" muted loop playsinline preload="metadata" width="1280" height="720"></video>
+        <video id="feat-v" src="github-videos-1/films/krishna.mp4" poster="github-videos-1/films/krishna.jpg" muted loop playsinline preload="metadata" width="1280" height="720"></video>
         <figcaption><span class="label">Featured film</span><b>Krishna</b><span>Cinematic concept film</span></figcaption>
         <button type="button" class="snd" id="feat-snd">Sound on</button>
       </figure>
@@ -1006,14 +1011,14 @@ $("#lb").addEventListener("touchend",e=>{if(tx===null)return;const d=e.changedTo
 
 // films
 const deck=$("#deck");let fi=0,soundOn=false,inView=false;
-deck.insertAdjacentHTML("beforeend",FILMS.map(([id,t,sub],i)=>`<div class="card" data-i="${i}"><img src="films/${id}.jpg" alt="Still from ${t}" width="540" height="960"><div class="prog"></div><div class="bar"><button type="button" class="snd">Sound on</button><span class="t"><b>${t}</b>${sub}</span></div></div>`).join(""));
+deck.insertAdjacentHTML("beforeend",FILMS.map(([id,t,sub],i)=>`<div class="card" data-i="${i}"><img src="github-videos-1/films/${id}.jpg" alt="Still from ${t}" width="540" height="960"><div class="prog"></div><div class="bar"><button type="button" class="snd">Sound on</button><span class="t"><b>${t}</b>${sub}</span></div></div>`).join(""));
 const cards=[...deck.querySelectorAll(".card")],N=cards.length;
 $("#dots").innerHTML=FILMS.map(([,t],i)=>`<button type="button" aria-label="${t}" data-i="${i}"></button>`).join("");
 function stopAll(){cards.forEach(c=>{const v=c.querySelector("video");if(v){v.pause();v.remove()}c.style.setProperty("--p",0)})}
 function startCurrent(){
   const c=cards[fi];if(c.querySelector("video")||!inView)return;
   const id=FILMS[fi][0];const v=document.createElement("video");
-  v.src=`films/${id}.mp4`;v.muted=!soundOn;v.playsInline=true;v.preload="auto";v.setAttribute("playsinline","");
+  v.src=`${({v01:2,v02:2,v03:2,v04:3,v05:3,v06:3,v07:4,v08:4})[id]?"github-videos-"+({v01:2,v02:2,v03:2,v04:3,v05:3,v06:3,v07:4,v08:4})[id]+"/":""}films/${id}.mp4`;v.muted=!soundOn;v.playsInline=true;v.preload="auto";v.setAttribute("playsinline","");
   v.addEventListener("playing",()=>v.classList.add("ready"));
   v.addEventListener("timeupdate",()=>v.duration&&c.style.setProperty("--p",v.currentTime/v.duration));
   v.addEventListener("ended",()=>go(1));
@@ -1024,7 +1029,7 @@ function syncSnd(){cards.forEach(c=>c.querySelector(".snd").textContent=soundOn?
 function layout(){
   cards.forEach((c,i)=>{let d=i-fi;if(d>N/2)d-=N;if(d<-N/2)d+=N;c.style.setProperty("--d",d);c.style.zIndex=10-Math.abs(d);c.classList.toggle("on",d===0);c.classList.toggle("far",Math.abs(d)>2)});
   [...$("#dots").children].forEach((b,i)=>b.setAttribute("aria-current",i===fi));
-  $("#glow").style.backgroundImage=`url(films/${FILMS[fi][0]}.jpg)`;
+  $("#glow").style.backgroundImage=`url(github-videos-1/films/${FILMS[fi][0]}.jpg)`;
 }
 function go(k){stopAll();fi=(fi+k+N)%N;layout();setTimeout(startCurrent,reduce?0:450)}
 $("#deck-prev").onclick=()=>go(-1);$("#deck-next").onclick=()=>go(1);
@@ -1274,4 +1279,4 @@ addEventListener("resize",()=>{if(innerWidth>860)set(false)});
 })();
 </script>
 
-</body></html>
+</html>
